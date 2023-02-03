@@ -37,9 +37,9 @@ def my_min_2(list)
     min
 end
 
-list = [ 0, 3, 5, 4, -5, 10, 1, 90 ]
-my_min_1(list)  # =>  -5
-my_min_2(list)
+# list = [ 0, 3, 5, 4, -5, 10, 1, 90 ]
+# my_min_1(list)  # =>  -5
+# my_min_2(list)
 
 # how to measure time for a method
 
@@ -53,25 +53,37 @@ def largest_contiguous_subsum(list)
     sub.map {|sum| sum.inject(:+)}.max
 end
 
-list = [5, 3, -7]
-p largest_contiguous_subsum(list)
+# list = [5, 3, -7]
+# p largest_contiguous_subsum(list)
 
-list = [2, 3, -6, 7, -6, 7]
-p largest_contiguous_subsum(list)
+# list = [2, 3, -6, 7, -6, 7]
+# p largest_contiguous_subsum(list)
 
-list = [-5, -1, -3]
-p largest_contiguous_subsum(list)
+# list = [-5, -1, -3]
+# p largest_contiguous_subsum(list)
+
+# def largest_contiguous_subsum_2(list)
+#     largest_sum = list.first
+#     current_sum = list.first
+#     list.each_index do |idx|
+#         current_sum += list[idx]
+#         largest_sum = current_sum + largest_sum
+        
+#         # largest_sum < current_sum ? largest_sum = current_sum : largest_sum = largest_sum
+#     end
+#     return largest_sum
+
+# end
 
 def largest_contiguous_subsum_2(list)
     largest_sum = list.first
     current_sum = list.first
-    list.each_index do |idx|
+
+    (0..list.length - 2).each do |idx|
         current_sum += list[idx]
-        largest_sum = current_sum + largest_sum
-        
-        # largest_sum < current_sum ? largest_sum = current_sum : largest_sum = largest_sum
+        largest_sum = current_sum if current_sum > largest_sum
     end
-    return largest_sum
+    largest_sum
 
 end
 

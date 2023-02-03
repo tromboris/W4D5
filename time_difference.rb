@@ -79,14 +79,21 @@ def largest_contiguous_subsum_2(list)
     largest_sum = list.first
     current_sum = list.first
 
-    (0..list.length - 2).each do |idx|
+    (1..list.length - 1).each do |idx|
+        current_sum = 0 if current_sum < 0
         current_sum += list[idx]
+
+        
+
+
+        # current_sum = list[idx..idx+1]
+        # current_sum = list[idx..idx+2]
+
         largest_sum = current_sum if current_sum > largest_sum
     end
     largest_sum
-
 end
 
-list = [-5, -1, -3]
+list = [1, 2, 3, 4, 5, 6, 4, 3, 3, -2, -3, -4, 3, 3, 4, 5, 7, 8, 9, 5, 4, 3, 2, 2, 2, 2]
 p largest_contiguous_subsum_2(list)
 
